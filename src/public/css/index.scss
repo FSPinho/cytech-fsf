@@ -1,0 +1,91 @@
+@mixin responsive($property, $small-phone, $phone, $tablet, $desktop) {
+  @media (max-width: 767px) {
+    #{$property}: #{$small-phone}
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    #{$property}: #{$phone}
+  }
+
+  @media (min-width: 993px) and (max-width: 1200px) {
+    #{$property}: #{$tablet}
+  }
+
+  @media (min-width: 1201px) {
+    #{$property}: #{$desktop}
+  }
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  padding: 8px;
+}
+
+.fsf-title {
+  color: black;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 8px;
+}
+
+.fsf-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+
+  border: black 1px solid;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 8px;
+
+  .fsf-item {
+
+    @include responsive(width, calc(100% - 18px), calc(100% - 34px), calc(50% - 34px), calc(33.3333% - 34px));
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    border: black 1px solid;
+    border-radius: 8px;
+    margin: 8px;
+    padding: 8px;
+    text-decoration: none;
+
+    .fsf-item-image {
+      img {
+        margin: 8px;
+        width: 192px;
+        border: black 1px solid;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+    }
+
+    .fsf-item-content {
+      display: flex;
+      flex-direction: column;
+
+      .fsf-item-title {
+        color: black;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 8px;
+      }
+
+      .fsf-item-text {
+        color: rgba(black, 0.8);
+        font-weight: 400;
+        font-size: 12px;
+        margin: 8px;
+      }
+    }
+
+    .fsf-item-rating {
+      path {
+        fill: yellow;
+      }
+    }
+  }
+}
