@@ -1,7 +1,7 @@
 module.exports = {
 
     KEY: () => `SUBMARINO`,
-    ROOT_URL: () => `http://www.submarino.com.br/`,
+    ROOT_URL: () => `https://www.submarino.com.br/`,
 
     search: {
         SEARCH_URL: (query) => `https://www.submarino.com.br/busca/${query.split(/\s+/).join("-")}`,

@@ -1,10 +1,10 @@
 module.exports = {
 
     KEY: () => `MAGALU`,
-    ROOT_URL: () => `http://www.magazineluiza.com.br/`,
+    ROOT_URL: () => `https://www.magazineluiza.com.br/`,
 
     search: {
-        SEARCH_URL: (query) => `http://busca.magazineluiza.com.br/busca?q=${query}`,
+        SEARCH_URL: (query) => `https://busca.magazineluiza.com.br/busca?q=${query}`,
         SEARCH_DONE_TARGET: () => `div.nm-product-img-link`,
         SEARCH_ITEMS_TARGET: () => `ul li.nm-product-item > a`,
         SEARCH_PAGES_NEXT: () => `ul.neemu-pagination li.neemu-pagination-next a`,

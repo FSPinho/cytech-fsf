@@ -3,37 +3,19 @@ const textUtils = require("../utils/text");
 const data = require("../utils/data");
 const log = require("../utils/log");
 
-const CONFIGS = {
-    MAGALU: require("../config/magalu"),
-    AMERICANAS: require("../config/americanas"),
-    SUBMARINO: require("../config/submarino"),
-};
-const DEF_HEADLESS = false;
+const CONFIGS = [
+    require("../config/americanas"),
+    require("../config/magalu"),
+    require("../config/submarino"),
+];
+const DEF_HEADLESS = process.env.HEADLESS !== "false";
 const DEF_TYPING_DELAY = 40;
 const DEF_WAIT_TIMEOUT = 5000;
 const DEF_SHIPPING_ZIP = "63902125";
 const DEF_MAX_ITEM_AGE = 24 * 3600 * 1000;
-const DEF_MAX_PAGES = 1;
+const DEF_MAX_PAGES = 5;
 const DEF_TERMS = [
-    "Nichos",
-    "Kit Nicho",
-    "Prateleira",
-    "Kit Prateleira",
-    // "Capsula cafe tres",
-    // "Balde retrátil",
-    // "Criado mudo",
-    // "Bicicleta",
-    // "Nicho",
-    // "Notebook",
-    // "TV",
-    // "Smartphone",
-    // "Fogão",
-    // "Roteador",
-    // "Abajur",
-    // "Pote",
-    // "Balde",
-    // "Fone de ouvido sem fio",
-    // "Redmi Airdots"
+    "Caneca",
 ]
 
 module.exports = {
@@ -44,12 +26,13 @@ module.exports = {
             defaultViewport: {width: 1280, height: 1080},
         });
         const _pageMain = await _browser.newPage();
+        _pageMain.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36");
 
         for (let term of DEF_TERMS) {
             console.log(" ----------------------------------");
             console.log(" --- Looking for:", term);
 
-            for (let DEF_CONFIG of [CONFIGS.SUBMARINO, CONFIGS.MAGALU, CONFIGS.AMERICANAS]) {
+            for (let DEF_CONFIG of CONFIGS) {
 
                 console.log(" --- Search URL:", DEF_CONFIG.search.SEARCH_URL(term));
 
@@ -192,14 +175,14 @@ module.exports = {
                         await data.save(_data);
 
                         console.error(`Error on item: ${_itemLink}`);
-                        await log.saveErrorLog(error);
+                        await log.saveErrorLog(error, _pageMain);
                     }
 
                     try {
                         // await _pageItem.close();
                     } catch (error) {
                         console.error(`Error on close page!`);
-                        await log.saveErrorLog(error);
+                        await log.saveErrorLog(error, _pageMain);
                     }
                 }
             }

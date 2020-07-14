@@ -1,10 +1,10 @@
 module.exports = {
 
     KEY: () => `AMERICANAS`,
-    ROOT_URL: () => `http://www.americanas.com.br/`,
+    ROOT_URL: () => `https://www.americanas.com.br/`,
 
     search: {
-        SEARCH_URL: (query) => `http://www.americanas.com.br/busca/${query.split(/\s+/).join("-")}`,
+        SEARCH_URL: (query) => `https://www.americanas.com.br/busca/${query.toLowerCase().split(/\s+/).join("-")}?rc=${query.toLowerCase().split(/\s+/).join("+")}`,
         SEARCH_DONE_TARGET: () => `div.product-grid-item`,
         SEARCH_ITEMS_TARGET: () => `div.product-grid-item a`,
         SEARCH_PAGES_NEXT: () => `ul.pagination-product-grid li:not([class="disabled"]) span[aria-label="Next"]`,

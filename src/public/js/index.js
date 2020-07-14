@@ -14,7 +14,7 @@
 
     function _doUpdate() {
         var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("GET", "http://192.168.0.102:8080/data", false);
+        xmlHttp.open("GET", "http://192.168.0.137:8080/data", false);
         xmlHttp.send(null);
         var _data = JSON.parse(xmlHttp.responseText);
 
