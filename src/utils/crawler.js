@@ -4,8 +4,8 @@ const data = require("../utils/data");
 const log = require("../utils/log");
 
 const CONFIGS = [
-    require("../config/americanas"),
     require("../config/magalu"),
+    require("../config/americanas"),
     require("../config/submarino"),
 ];
 const DEF_HEADLESS = process.env.HEADLESS !== "false";
@@ -15,7 +15,7 @@ const DEF_SHIPPING_ZIP = "63902125";
 const DEF_MAX_ITEM_AGE = 24 * 3600 * 1000;
 const DEF_MAX_PAGES = 5;
 const DEF_TERMS = [
-    "Caneca",
+    "Estante livros",
 ]
 
 module.exports = {
